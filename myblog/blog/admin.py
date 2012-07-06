@@ -10,7 +10,7 @@ class CommentAdmin(admin.ModelAdmin):
   list_display=('post','author','body','created','updated')
   list_filter = ('author','created')
 class CommentInline(admin.TabularInline):
-  model='Comment'
+  model=Comment
 admin.site.register(Post,PostAdmin)
 admin.site.register(Comment,CommentAdmin)
 #admin.site.register(Post)
