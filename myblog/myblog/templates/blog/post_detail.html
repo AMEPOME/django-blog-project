@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>{{ post.title }}</h3>
+<h4>{{ post.author }}</h4>
+<p>{{ post.created }}</p>
+<p>{{post.updated}}</p>
+{% for c in comments %}
+<h5>{{ c.author }}</h5>
+<h6>{{ c.body }}</h6>
+<h7>{{ c.updated}}</h7>
+<h8>{{ c.created }}</h8>
+{% endfor %}
+{% endblock %}
