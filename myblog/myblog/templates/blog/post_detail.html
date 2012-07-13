@@ -2,13 +2,13 @@
 {% block content %}
 <h3>{{ post.title }}</h3>
 <h4>{{ post.author }}</h4>
-<p>{{ post.created }}</p>
-<p>{{post.updated}}</p>
+<h5>date created:{{ post.created }}<h5>
+<h6>date updated:{{post.updated}}<h6>
 {% for c in comments %}
 <h5>{{ c.author }}</h5>
 <h6>{{ c.body }}</h6>
-<h7>{{ c.updated}}</h7>
-<h8>{{ c.created }}</h8>
+<h7>date updated:{{ c.updated}}</h7>
+<h8>date created:{{ c.created }}</h8>
 
 
 <h3>New comment:</h3>

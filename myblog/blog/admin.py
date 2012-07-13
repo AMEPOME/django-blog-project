@@ -5,6 +5,7 @@ class PostAdmin(admin.ModelAdmin):
   list_display=('title','created','updated')
   list_filter = ('created',)
   search_fields = ('title', 'body')
+  
   #inlines=[CommentInline]
 class CommentAdmin(admin.ModelAdmin):
   list_display=('post','author','body','created','updated')

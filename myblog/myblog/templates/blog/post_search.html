@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 <h9>{{term}}</h9>
+{% for post in posts %}
 <p>{{posts.title}}</p>
 {% endblock %}
 
