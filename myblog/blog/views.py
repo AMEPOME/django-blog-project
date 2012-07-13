@@ -1,8 +1,11 @@
 # Create your views here.
-from django.template import Context, loader
+from django.template import Context, loader,Template
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from models import Post, Comment 
+from django.forms import ModelForm
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseRedirect
 
 def post_list(request):
   posts = Post.objects.all()
@@ -10,24 +13,35 @@ def post_list(request):
   c = Context({'posts':posts })
   return HttpResponse(t.render(c))
 
-def post_list(request):
-    post_list = Post.objects.all()
-   
-    print type(post_list)
-    print post_list
-    l=[]
-    for a in post_list:
-      l.append(a.title)
-      l.append(a.body)
-    return HttpResponse(l)
-
+class CommentForm(ModelForm):
+  class Meta:
+    model=Comment
+    exclude=['post']
+#def get_data(request):
+    
+     
+@csrf_exempt
 def post_detail(request, id, showComments=False):
-    post=Post.objects.get(pk=id)
-    if(showComments):
-      out=post.body
-    else:
-      out=post.title
-      return HttpResponse(out)   
+  if request.method == 'POST':	
+       form = CommentForm(request.POST)
+       if form.is_valid():
+          form.save()
+       return HttpResponseRedirect(request.path)
+  else:
+       form = CommentForm()
+  post=Post.objects.get(pk=id)
+  comments=Comment.objects.filter(post=post)
+  #if(showComments):
+      #out='<h1>'+post.title+'</h1>'+'<br>'+post.body+'</br>'
+  #else:
+      #out=post.title+'\n'
+  d=dict(post=post,comments=comments,form=CommentForm(),user=request.user)
+  d.update((request))
+  return render_to_response('blog/post_detail.html',d) 
+  
+        
+      
+      
     
     
 def post_search(request, term):
@@ -36,5 +50,3 @@ def post_search(request, term):
 
 def home(request):
     return render_to_response('blog/base.html',{})
-
-    

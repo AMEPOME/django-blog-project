@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'blog/base.html' %}
 {% block content %}
 <h3>{{ post.title }}</h3>
 <h4>{{ post.author }}</h4>
@@ -9,5 +9,15 @@
 <h6>{{ c.body }}</h6>
 <h7>{{ c.updated}}</h7>
 <h8>{{ c.created }}</h8>
+
+
+<h3>New comment:</h3>
+<div>
+<form method='post' action="">
+{{ form.as_p }}
+<input type='submit' name='Submit'>
+</form>
+</div>
+
 {% endfor %}
 {% endblock %}

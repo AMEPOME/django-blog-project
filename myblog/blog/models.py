@@ -6,6 +6,8 @@ class Post(models.Model):
   body=models.TextField()
   created=models.DateField()
   updated=models.DateField()
+
+  
   def __unicode__(self):
     return self.title
 
@@ -15,9 +17,12 @@ class Comment(models.Model):
   created=models.DateField()
   updated=models.DateField()
   post=models.ForeignKey(Post)
+  
+  
   def __unicode__(self):
-    return self.author
-
+    return ('%s:%s'%(self.post,self.body[:60]))
+def body_first_60(self):
+  return self.body[:60]
 
 
 
