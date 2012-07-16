@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+{% for post in posts %}
+
+
+<a href="/blog/posts/{{ post.id }}/True">
+click title to view related comments
+</a>
+<a href="{{ post.get_absolute_url }}">
+
+</a>
+<ul>
+<li>
+<a>{{ post.title}} </a>
+</li>
+<li>
+{{ post.body|slice:":60"}} 
+</li>
+<li>
+Created: {{ post.created }}
+</li>
+<li>
+Last updated: {{ post.updated }}
+</li>
+
+</ul>
+{% endfor %}
+
+{% endblock %}

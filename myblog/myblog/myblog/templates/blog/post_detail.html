@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<h3>{{ post.title }}</h3>
+<h3>{{ post.author }}</h3>
+<h4>{{ post.body }}</h4>
+<h7>date created:{{ post.created }}<h7>
+<h7><p>date updated:{{post.updated}}</p><h7>
+{% for c in comments %}
+<h4>{{ c.author }}</h4>
+<h4>{{ c.body }}</h4>
+<h7>date updated:{{ c.updated}}</h7>
+<h7><p>date created:{{ c.created }}</p></h7>
+<div>
+<a href="/blog/comments/{{ comment.id }}/edit">
+Edit Comment
+</a>
+</div>
+
+
+<h3>New comment:</h3>
+<div>
+<form method='post' action="">
+{{ form.as_p }}
+<input type='submit' name='Submit'>
+</form>
+</div>
+
+{% endfor %}
+{% endblock %}

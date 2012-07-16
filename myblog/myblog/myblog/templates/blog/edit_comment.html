@@ -1,0 +1,14 @@
+
+
+{% extends "blog/base.html" %}
+{% block content %}
+{{commentedit}}
+<h3> Edit your comments: </h3>
+<div>
+
+<form method='post' action="">
+    {{ form.as_p }}  
+    <input type='submit' name='Submit'>
+</form>
+</div>
+{% endblock %}
